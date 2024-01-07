@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="300"></canvas>
+
+</body>
+
+<script id="vertex-shader-2d" type="notjs">
+        // атрибут, который будет получать данные из буфера
+        attribute vec2 a_position;
+
+      uniform vec2 u_resolution;
+
+      void main() {
+        // преобразуем положение в пикселях к диапазону от 0.0 до 1.0
+        vec2 zeroToOne = a_position / u_resolution;
+
+        // преобразуем из 0->1 в 0->2
+        vec2 zeroToTwo = zeroToOne * 2.0;
+
+        // преобразуем из 0->2 в -1->+1 (пространство отсечения)
+        vec2 clipSpace = zeroToTwo - 1.0;
+
+        gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+    }
+</script>
+
+<script id="fragment-shader-2d" type="notjs">
+    // фрагментные шейдеры не имеют точности по умолчанию, поэтому нам необходимо её
+  // указать. mediump подойдёт для большинства случаев. Он означает "средняя точность"
+
+    precision mediump float;
+    uniform vec4 u_color;
+
+    void main(){
+        // gl_FragColor - специальная переменная фрагментного шейдера.
+    // Она отвечает за установку цвета.
+        gl_FragColor = u_color;
+    }
+</script>
+<script src="main.js"></script>
+</html>

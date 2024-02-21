@@ -10,7 +10,7 @@
 
 </body>
 
-<script id="vertex-shader-2d" type="notjs">
+<script id="vertex-shader-2d" type="x-shader/x-vertex">
         // атрибут, который будет получать данные из буфера
         attribute vec2 a_position;
 
@@ -30,17 +30,23 @@
     }
 </script>
 
-<script id="fragment-shader-2d" type="notjs">
+<script id="fragment-shader-2d" type="x-shader/x-fragment">
     // фрагментные шейдеры не имеют точности по умолчанию, поэтому нам необходимо её
-  // указать. mediump подойдёт для большинства случаев. Он означает "средняя точность"
+    // указать. mediump подойдёт для большинства случаев. Он означает "средняя точность"
 
     precision mediump float;
-    uniform vec4 u_color;
+    varying vec4 v_color;
 
     void main(){
-        // gl_FragColor - специальная переменная фрагментного шейдера.
-    // Она отвечает за установку цвета.
-        gl_FragColor = u_color;
+        // умножение положения на матрицу
+        gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
+
+
+        // преобразование из пространства отсечения в пространство цвета
+        // пространство отсечения находится в диапазоне от -1.0 до +1.0
+        // пространство цвета находится в диапазоне от 0.0 до 1.0
+        v_color = gl_Position * 0.5 + 0.5;
+        gl_FragColor = v_color;
     }
 </script>
 <script src="main.js"></script>

@@ -72,10 +72,7 @@ function main() {
 	var POSITIONS = [
 		10, 20,
 		80, 20,
-		10, 30,
-		10, 30,
-		80, 20,
-		80, 30,
+		10, 80,
 	];
 
 	var vertexShaderSource = document.querySelector('#vertex-shader-2d').text;
@@ -121,7 +118,7 @@ function main() {
 
 	var primitiveType = gl.TRIANGLES;
 	var offset = 0;
-	var count = 6;
+	var count = 3;
 	gl.drawArrays(primitiveType, offset, count);
 
 	setRectangle(gl, 100, 50, 50, 40, [0.4, 0.2, 0.4, 1], program);

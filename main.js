@@ -76,6 +76,7 @@ function main() {
 	];
 
 	var vertexShaderSource = document.querySelector('#vertex-shader-2d').text;
+	// var fragmentShaderSource = document.querySelector('#fragment-shader-2d').text;
 	var fragmentShaderSource = document.querySelector('#fragment-shader-2d').text;
 
 	var vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);

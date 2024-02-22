@@ -23,7 +23,7 @@ void main(){
 
 	vec3 color = vec3(0.0);
 
-	float rect = rectShape(position, vec2(0.2, 0.2));
+	float rect = rectShape(position, vec2(0.3, 0.3));
 
 	color = vec3(rect);
 

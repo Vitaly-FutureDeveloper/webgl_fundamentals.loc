@@ -11,7 +11,7 @@ void main(){
 
 	vec3 color = vec3(0.3, 0.2, 0.3);
 
-	float circle = circleShape(position, 100.0);
+	float circle = circleShape(position, 80.0);
 
 	color = vec3(circle);
 

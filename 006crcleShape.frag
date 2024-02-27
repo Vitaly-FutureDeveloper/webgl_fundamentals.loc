@@ -32,8 +32,6 @@ float circleShape(vec2 position, float innerRadius, float outerRadius, vec3 colo
             return 0.0;  // Фрагмент вне сектора круга (чёрный)
         }
     }
-
-		gl_FragColor = vec4(color, 1.0);
 }
 
 

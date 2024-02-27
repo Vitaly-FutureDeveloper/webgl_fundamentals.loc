@@ -14,13 +14,20 @@ float polygonShape (vec2 position, float radius, float sides) {
     return step(radius, cos(floor(0.5 + angle / slice) * slice - angle) * length(position));
 }
 
+mat2 rotate(float angle){
+	return mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+}
+
 void main(){
     vec2 position = gl_FragCoord.xy / u_resolution;
     
-    float polygon = polygonShape(position, 0.6, 8.0);
-
-
     vec3 color = vec3(0.0, 0.2, 0.3);
+
+    position -= vec2(0.5);
+		position = rotate(3.1415) * position;
+		position += vec2(0.5);
+
+		float polygon = polygonShape(position, 0.6, 5.0);
 
     color = vec3(polygon);
 

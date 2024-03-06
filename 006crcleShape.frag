@@ -5,21 +5,21 @@ precision mediump float;
 
 const float PI = 3.1415926535;
 
-const float INNER_RADIUS = 40.0;
-const float OUTHER_RADIUS = 100.0;
+const float INNER_RADIUS = 80.0;
+const float OUTHER_RADIUS = 150.0;
 
 const vec2 POSITION = vec2(300.0, 300.0);
-const float ROTATION = PI / 2.0;
+const float ROTATION = PI / 1.0;
 
 const float START_ANGLE = 0.0;
-const float END_ANGLE = PI * 1.8;
+const float END_ANGLE = PI * 1.1;
 
 
 mat2 rotate(float angle){
 	return mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
 }
 
-float circleShape(vec2 position, float innerRadius, float outerRadius, vec3 color) {
+float circleShape(vec2 position, float innerRadius, float outerRadius) {
     float distance = length(position - POSITION);
     if (distance < innerRadius || distance > outerRadius) {
         discard;  // Фрагмент вне круга
@@ -44,7 +44,7 @@ void main(){
 		position = rotate(ROTATION) * position;
 		position += POSITION;
 
-    float ring = circleShape(position, INNER_RADIUS, OUTHER_RADIUS, color);
+    float ring = circleShape(position, INNER_RADIUS, OUTHER_RADIUS);
 
 		color *= ring;
 
